@@ -1,0 +1,102 @@
+composer create-project laravel/laravel myapp
+composer create-project laravel/laravel studentManagement
+
+localhost/studentManagement/public
+
+
+//run app
+php artisan serve
+
+
+//check route list
+php artisan route:list
+
+//make new view
+php artisan make:view contactus
+
+//make new controller
+php artisan make:controller StudentController
+
+//make new controller --invokable
+php artisan make:controller TestController --invokable
+
+//make new controller --resource
+php artisan make:controller SecondTestController --resource
+
+//cache file
+php artisan view:cache
+
+//clear cache
+php artisan view:clear
+
+
+
+
+//db make migration normal template
+php artisan make:migration StudentsTable
+
+	//db make migration create table template
+	php artisan make:migration create_students_table
+	php artisan make:migration addSoftDeleteToStudentsTable
+	php artisan make:migration AddImageToStudentsTable
+	
+	//db add columns
+	php artisan make:migration addDateOfBirthToStudents --table=students
+	php artisan make:migration addUserIDToStudents --table=students
+	
+	
+
+//database run code
+php artisan migrate
+
+
+//rollback db change
+php artisan migrate:rollback
+php artisan migrate:rollback --step=2
+
+
+//run all the migration, refresh, run it again, delete and update
+php artisan migrate:fresh
+
+//db reset(delete all db) DO NOT RUN!!!!!!!!
+php artisan migrate:reset
+
+//make new model
+php artisan make:model Student
+
+//make new model and migration table
+php artisan make:model Teachers -mc
+---------------------------------------------------------
+//add random data
+php artisan make:factory StudentFactory --model=Student
+
+//run data factory for generate random data
+php artisan db:seed
+
+	step to generate seed(random data)
+	1)create factory
+	2)factory parameter settings
+	3)Go to student model to add 
+		use HasFactory;
+	4)Go to seeder file to find DatabaseSeeder add code
+		
+		Student::factory(100)->create();
+---------------------------------------------------------
+//make new Seeder
+php artisan make:seeder CountriesSeeder
+
+//start insert after put country data inside seeder
+php artisan db:seed --class=CountriesSeeder
+
+//make model controller seeder
+php artisan make:model Cities -mcs
+
+//softdelete, can track data's delete time, add col delete at
+need add use SoftDeletes; inside student model
+
+
+//http form request validate
+php artisan make:request StudentAddRequest 
+
+//link image folder to public folder
+php artisan storage:link
